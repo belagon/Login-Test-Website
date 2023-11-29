@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/css/administrador.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+</head>
+
+<body>
+    <h1 class="titulo">v1 -- ADMIN</h1>
+
+    <div id="whole">
+        <div id="form_fundo">
+            <h1>CADASTRAR USUÁRIO</h1>
+            <div id="form_frente">
+                <form action="/cadastrarUsuario" id="login" method="post">
+                    <label for="nome">NOME</label>
+                    <input type="text" name="nome" id="nome" required placeholder="Digite seu nome"><br><br>
+                    <label for="senha" id="senha">SENHA</label>
+                    <input type="text" name="senha" id="senha2" required="" placeholder="Digite uma senha">
+                    <button type="submit" id="btn_login">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span> CADASTRAR
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr class="two">
+
+    <div id="form_fundo" class="lista">
+        <h1>USUÁRIOS CADASTRADOS</h1>
+        {% set menssagem = get_flashed_messages() %}
+        {% if menssagem%}
+        <div class="flash_alert">
+            {{menssagem[0]}}
+        </div>
+    
+        {% endif%}
+
+        <div id="form_frente" class="lista">
+            {% if usuarios%}
+
+            {%for c in usuarios%}
+            <form action="/excluirUsuario" method="post">
+            <ul type="ball">
+                <input type="hidden" name="userExclusao" value="{{c}}">
+
+                <li>Nome: {{c['nome']}}</li>
+                <li>Senha: {{c['senha']}}</li>
+            </ul>
+            <button type="submit">EXCLUIR</button>
+        </form>
+            <hr>
+            {% endfor %}
+
+            {% else%}
+
+            <h1>Não existem usuários cadastrados</h1>
+
+            {% endif%}
+
+        </div>
+    </div>
+
+
+<div id="form_fundo" class="upload">
+    <h1>ENVIAR ARQUIVO</h1>
+    <div id="form_frente" class="upload">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="documento" id="documento"><br><br><br>
+            <button type="submit">ENVIAR</button>
+        </form>
+
+    </div>
+</div>
+
+
+    <div class="footer">♥ <span> By Belagon. All rights reserved.</span></div>
+
+
+
+
+    <script>
+    </script>
+</body>
+
+</html>

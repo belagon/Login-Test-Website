@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div id="whole">
+        <div id="form_fundo">
+            <h1>LOGIN</h1>
+            <div id="form_frente">
+                
+                {% set menssagem = get_flashed_messages() %}
+                {% if menssagem%}
+                <div class="flash_alert">
+                    {{menssagem[0]}}
+                </div>
+            
+                {% endif%}
+            
+                <form action="/login" id="login" method="post">
+                    <label for="nome">NOME</label>
+                    <input type="text" name="nome" id="nome" required placeholder="Digite seu nome"><br><br>
+                    <label for="senha" id="senha">SENHA</label>
+                    <input type="password" name="senha" id="senha2" required="" placeholder="Digite uma senha"><i
+                        class="far fa-eye" id="togglePassword"></i><br><br>
+                    <button type="submit" id="btn_login">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span> ENTRAR
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer">♥ <span> By Belagon. All rights reserved.</span></div>
+
+
+
+
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#senha2');
+
+        togglePassword.addEventListener('click', function (e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+</body>
+
+</html>
